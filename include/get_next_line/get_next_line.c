@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   get_next_line_bonus.c                              :+:    :+:            */
+/*   get_next_line.c                                    :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: dtran <dtran@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/25 14:54:40 by dtran         #+#    #+#                 */
-/*   Updated: 2022/04/06 15:52:33 by dtran         ########   odam.nl         */
+/*   Updated: 2022/07/14 17:08:42 by dtran         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static char	*copy_result(char *strbuff)
 	int		idx;
 
 	idx = 0;
-	length = ft_strchr(strbuff, '\n') - strbuff;
+	length = ft_strchrgnl(strbuff, '\n') - strbuff;
 	result = (char *)malloc(sizeof(char) * (length + 2));
 	if (!result)
 		return (NULL);
@@ -37,10 +37,10 @@ static char	*dup_remainder(char *strbuff)
 {
 	char	*temp;
 
-	temp = ft_strchr(strbuff, '\n') + 1;
+	temp = ft_strchrgnl(strbuff, '\n') + 1;
 	if (*temp)
 	{
-		temp = ft_strdup(temp);
+		temp = ft_strdupgnl(temp);
 		if (!temp)
 			return (0);
 		free (strbuff);
@@ -54,7 +54,7 @@ static char	*find_newline(int fd, char **strbuff, int bread)
 {
 	char	*endres;
 
-	if (ft_strchr(*strbuff, '\n'))
+	if (ft_strchrgnl(*strbuff, '\n'))
 	{
 		endres = copy_result(*strbuff);
 		if (!endres)
@@ -75,13 +75,13 @@ static char	*fill_static(int fd, char **strbuff, char *buff, int bread)
 
 	if (*strbuff == NULL && bread)
 	{
-		*strbuff = ft_strdup(buff);
+		*strbuff = ft_strdupgnl(buff);
 		if (!*strbuff)
 			return (NULL);
 	}
 	else
 	{
-		temp = ft_strjoin(*strbuff, buff);
+		temp = ft_strjoingnl(*strbuff, buff);
 		if (!temp)
 			return (NULL);
 		*strbuff = temp;
