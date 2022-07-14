@@ -6,7 +6,7 @@
 #    By: dtran <dtran@student.codam.nl>               +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/07/14 14:44:11 by dtran         #+#    #+#                  #
-#    Updated: 2022/07/14 15:02:49 by dtran         ########   odam.nl          #
+#    Updated: 2022/07/14 15:26:47 by dtran         ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -80,16 +80,7 @@ libft:
 #===============================================================================: Remove all object files
 clean:
 	@$(RM) objs/
-	@$(MAKE) -C $(LIBFT) clean
-	@$(MAKE) -C $(GNL) clean
-	@$(MAKE) -C $(MLX42) clean
 	@printf "$(RED)🧹Removed objects for \"$(NAME)\"!$(RESET)\n"
-
-#===============================================================================: Remove project object files & executable
-cleanfdf:
-	@$(RM) objs/
-	@$(RM) $(NAME)
-	@printf "$(RED)🧹Removed current objects & current executable for \"$(NAME)\"$(RESET)\n"
 
 #===============================================================================: Remove all object files and executable
 fclean:
