@@ -6,7 +6,7 @@
 #    By: dtran <dtran@student.codam.nl>               +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/07/14 14:44:11 by dtran         #+#    #+#                  #
-#    Updated: 2022/08/24 15:37:58 by dtran         ########   odam.nl          #
+#    Updated: 2022/08/25 19:00:42 by dtran         ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ LIBFT		= include/libft
 GNL			= include/get_next_line
 
 #===============================================================================: Compile variables
-CC			= gcc
+CC			= gcc -g -fsanitize=address
 CFLAGS		= -Wall -Werror -Wextra
 RM			= rm -rf
 MKDIR		= mkdir -p objs
