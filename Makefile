@@ -6,7 +6,7 @@
 #    By: dtran <dtran@student.codam.nl>               +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/07/14 14:44:11 by dtran         #+#    #+#                  #
-#    Updated: 2022/07/14 15:26:47 by dtran         ########   odam.nl          #
+#    Updated: 2022/08/24 15:37:58 by dtran         ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,13 @@ GLFW		= include/MLX42/libmlx42.a -I include -lglfw3 -framework Cocoa -framework 
 
 #===============================================================================: Sourcefiles
 SRCS		= $(addprefix src/, $(addsuffix .c, \
-				main ))
+				hooks \
+				center_map \
+				draw \
+				render_map \
+				read_file \
+				utils \
+				main))
 
 #===============================================================================: Make commands
 all: message mlx libft gnl $(NAME)
@@ -96,4 +102,4 @@ fclean:
 re: fclean all
 
 #===============================================================================: To not confuse make
-.PHONY: all, clean, fclean, re, message, run
+.PHONY: all, clean, fclean, re, message, run, mlx, gnl, libft
