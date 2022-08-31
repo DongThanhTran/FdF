@@ -6,7 +6,7 @@
 /*   By: dtran <dtran@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/08/22 16:55:36 by dtran         #+#    #+#                 */
-/*   Updated: 2022/08/25 17:32:57 by dtran         ########   odam.nl         */
+/*   Updated: 2022/08/31 18:43:51 by dtran         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,11 +87,19 @@ static void	fill_map(char *line, t_data *data, int fd)
 			ft_error_exit("malloc failed", 1);
 		parsed_map = ft_split(line, ' ');
 		if (!parsed_map)
+		{
+			free_map_int(data->map);
 			ft_error_exit("split failed", 1);
+		}
 		parse_width(data, height, parsed_map);
 		free(line);
-		free(parsed_map);
+		free_map_char(parsed_map);
 		line = get_next_line(fd);
+		if (!line)
+		{
+			free_map_int(data->map);
+			ft_error_exit("no new line", 1);
+		}
 		height++;
 	}
 }
