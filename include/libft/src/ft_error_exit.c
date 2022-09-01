@@ -6,7 +6,7 @@
 /*   By: dtran <dtran@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/30 15:12:18 by dtran         #+#    #+#                 */
-/*   Updated: 2022/09/01 14:07:54 by dtran         ########   odam.nl         */
+/*   Updated: 2022/09/01 17:48:06 by dtran         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,5 @@
 void	ft_error_exit(char *str, int exit_code)
 {
 	ft_putendl_fd(str, 2);
-	system("leaks fdf");
 	exit(exit_code);
 }
