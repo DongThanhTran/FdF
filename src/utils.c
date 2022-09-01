@@ -6,7 +6,7 @@
 /*   By: dtran <dtran@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/08/23 15:48:02 by dtran         #+#    #+#                 */
-/*   Updated: 2022/08/25 17:35:58 by dtran         ########   odam.nl         */
+/*   Updated: 2022/09/01 13:44:39 by dtran         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,21 @@ void	free_map_char(char **map)
 	free(map);
 }
 
-void	free_map_int(t_data	*tab)
+void	free_map_int(t_data	*data)
 {
 	int	idx;
 
 	idx = 0;
-	while (idx < tab->height)
+	while (idx < data->height)
 	{
-		free(tab->map[idx]);
+		free(data->map[idx]);
 		idx++;
 	}
-	free(tab->map);
+	free(data->map);
+}
+
+void	free_exit(t_data *data, char *err_message)
+{
+	free_map_int(data);
+	ft_error_exit(err_message, 1);
 }

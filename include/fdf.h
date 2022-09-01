@@ -6,7 +6,7 @@
 /*   By: dtran <dtran@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/07/14 16:43:48 by dtran         #+#    #+#                 */
-/*   Updated: 2022/08/25 18:01:38 by dtran         ########   odam.nl         */
+/*   Updated: 2022/09/01 13:44:31 by dtran         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,13 @@ typedef struct s_data
 
 void	read_file(char *file_name, t_data *data);
 void	free_map_char(char **map);
-void	free_map_int(t_data	*tab);
+void	free_map_int(t_data	*data);
 void	get_coords(t_data *data, int x, int y, t_coords *coord);
 void	fill_bg(t_data *data);
 void	render_map(t_data *data);
 void	draw_line(t_data *data, t_coords *a, t_coords *b);
 int		center_map(t_data *data);
 void	key_hook(mlx_key_data_t key_data, void *data);
+void	free_exit(t_data *data, char *err_message);
 
 #endif

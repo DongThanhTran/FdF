@@ -6,7 +6,7 @@
 /*   By: dtran <dtran@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/08/22 16:55:36 by dtran         #+#    #+#                 */
-/*   Updated: 2022/08/31 18:43:51 by dtran         ########   odam.nl         */
+/*   Updated: 2022/09/01 15:43:22 by dtran         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ static int	get_width(char *file_name)
 	if (fd == -1)
 		ft_error_exit("open failed", 1);
 	line = get_next_line(fd);
+	if (!line)
+		ft_error_exit("GNL failed", 1);
 	map = ft_split(line, ' ');
 	if (!map)
 		ft_error_exit("no map available", 1);
@@ -70,56 +72,48 @@ static void	parse_width(t_data *data, int height, char **parsed_map)
 	{
 		data->map[height][width] = ft_atoi(parsed_map[width]);
 		free(parsed_map[width]);
+		parsed_map[width] = NULL;
 		width++;
 	}
 }
 
-static void	fill_map(char *line, t_data *data, int fd)
+static void	fill_map(t_data *data, int fd)
 {
 	char	**parsed_map;
+	char	*line;
 	int		height;
 
 	height = 0;
 	while (height < data->height)
 	{
-		data->map[height] = (int *)malloc(sizeof(int) * data->width);
-		if (!data->map[height])
-			ft_error_exit("malloc failed", 1);
-		parsed_map = ft_split(line, ' ');
-		if (!parsed_map)
-		{
-			free_map_int(data->map);
-			ft_error_exit("split failed", 1);
-		}
-		parse_width(data, height, parsed_map);
-		free(line);
-		free_map_char(parsed_map);
 		line = get_next_line(fd);
 		if (!line)
-		{
-			free_map_int(data->map);
-			ft_error_exit("no new line", 1);
-		}
+			free_exit(data, "GNL failed");
+		data->map[height] = (int *)ft_calloc(sizeof(int), data->width);
+		if (!data->map[height])
+			free_exit(data, "calloc failed");
+		parsed_map = ft_split(line, ' ');
+		free(line);
+		if (!parsed_map)
+			free_exit(data, "split failed");
+		parse_width(data, height, parsed_map);
+		free_map_char(parsed_map);
 		height++;
 	}
 }
 
 void	read_file(char *file_name, t_data *data)
 {
-	char	*line;
 	int		fd;
 
 	data->height = get_height(file_name);
 	data->width = get_width(file_name);
-	data->map = (int **)malloc(sizeof(int *) * data->height);
+	data->map = (int **)ft_calloc(sizeof(int *), data->height);
 	if (!data->map)
-		ft_error_exit("malloc failed", 1);
+		free_exit(data, "calloc failed");
 	fd = open(file_name, O_RDONLY);
 	if (fd == -1)
 		ft_error_exit("open failed", 1);
-	line = get_next_line(fd);
-	if (!line)
-		ft_error_exit("no new line", 1);
-	fill_map(line, data, fd);
+	fill_map(data, fd);
 	close(fd);
 }
