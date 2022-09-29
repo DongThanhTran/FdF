@@ -6,15 +6,15 @@
 /*   By: dtran <dtran@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/07/14 16:43:48 by dtran         #+#    #+#                 */
-/*   Updated: 2022/09/01 13:44:31 by dtran         ########   odam.nl         */
+/*   Updated: 2022/09/29 11:59:36 by dtran         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 
-# define WIDTH 1920
-# define HEIGHT 1080
+# define WIDTH 1512
+# define HEIGHT 982
 
 # define COLOR_LINE 0x00FFFFFF
 

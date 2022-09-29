@@ -6,7 +6,7 @@
 #    By: dtran <dtran@student.codam.nl>               +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/07/14 14:44:11 by dtran         #+#    #+#                  #
-#    Updated: 2022/09/29 11:42:31 by dtran         ########   odam.nl          #
+#    Updated: 2022/09/29 11:57:32 by dtran         ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,8 @@ RM			= rm -rf
 MKDIR		= mkdir -p objs
 HEADERS		= -I $(MLX42) -I $(LIBFT) -I $(GNL) -I $(FDF)
 GLFW		= include/MLX42/libmlx42.a -I include -lglfw3 -framework Cocoa -framework OpenGL -framework IOKit
+#GLFW		= include/MLX42/libmlx42.a -I include -lglfw -L /opt/homebrew/opt/glfw/lib/
+
 
 #===============================================================================: Sourcefiles
 SRCS		= $(addprefix src/, $(addsuffix .c, \
